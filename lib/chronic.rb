@@ -46,11 +46,17 @@ module Chronic
   
   class << self
     attr_accessor :debug
-    attr_accessor :time_class
+
+    def time_class
+      Thread.current[:chronic_time_class] ||= Time
+    end
+
+    def time_class=(klass)
+      Thread.current[:chronic_time_class] = klass
+    end
   end
 
   self.debug = false
-  self.time_class = Time
 end
 
 # class Time
