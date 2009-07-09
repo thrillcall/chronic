@@ -1,6 +1,6 @@
 Chronic
 http://chronic.rubyforge.org/
-	by Tom Preston-Werner
+by Tom Preston-Werner
 
 == DESCRIPTION:
 
