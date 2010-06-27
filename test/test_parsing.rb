@@ -476,6 +476,9 @@ class TestParsing < Test::Unit::TestCase
     time = parse_now("1 month ago")
     assert_equal Time.local(2006, 7, 16, 14), time
     
+    time = parse_now("1 month ago", :now => Time.local(2010,05,31, 14))
+    assert_equal Time.local(2010, 04, 30, 14), time
+    
     time = parse_now("1 fortnight ago")
     assert_equal Time.local(2006, 8, 2, 14), time
     

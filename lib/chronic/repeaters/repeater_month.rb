@@ -53,7 +53,13 @@ class Chronic::RepeaterMonth < Chronic::Repeater #:nodoc:
       new_year += 1
       new_month -= YEAR_MONTHS
     end
-    Time.construct(new_year, new_month, time.day, time.hour, time.min, time.sec)
+    
+    new_time = Time.construct(new_year, new_month, time.day, time.hour, time.min, time.sec)
+    if new_time.month > new_month
+      Time.construct(new_year, new_month, time.day - 1, time.hour, time.min, time.sec)
+    else
+      new_time
+    end
   end
   
   def width
