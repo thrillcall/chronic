@@ -39,7 +39,7 @@ module Chronic
     #     will be made, and the first matching instance of that time will 
     #     be used.
     def parse(text, specified_options = {})
-      @text = text
+      @text = text.gsub /,/, ' '
       
       # get options and set defaults if necessary
       default_options = {:context => :future,
