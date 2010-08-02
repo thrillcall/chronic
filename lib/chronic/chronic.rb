@@ -41,6 +41,7 @@ module Chronic
     def parse(text, specified_options = {})
       @text = text
       
+      # support commas by removing them for now
       @text.gsub(/,/, ' ') if @text.is_a?(String) 
       
       # get options and set defaults if necessary
