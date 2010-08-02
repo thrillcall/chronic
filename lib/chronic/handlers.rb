@@ -387,6 +387,10 @@ module Chronic
       repeaters.sort.reverse
     end
     
+    def in_span?(span, t)
+      t && span && t >= span.begin && t <= span.end
+    end
+    
     # Recursively finds repeaters within other repeaters.
     # Returns a Span representing the innermost time span
     # or nil if no repeater union could be found
@@ -398,7 +402,7 @@ module Chronic
       head.start = pointer == :future ? span.begin : span.end
       h = head.this(:none)
             
-      if span.include?(h.begin) || span.include?(h.end)
+      if in_span?(span, h.begin) || in_span(span, h.end)
         return find_within(rest, h, pointer)
       else
         return nil
