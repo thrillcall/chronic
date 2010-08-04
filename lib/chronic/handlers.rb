@@ -1,7 +1,7 @@
 module Chronic
 
-	class << self
-	  
+  class << self
+
     def definitions(options={}) #:nodoc:
       options[:endian_precedence] = [:middle, :little] if options[:endian_precedence].nil?
       
@@ -19,7 +19,7 @@ module Chronic
         raise ChronicPain, "Unknown endian type: #{e.to_s}" unless instance_variable_defined?(endian_variable_name_for(e))
       end
 
-	    @definitions ||= 
+      @definitions ||= 
       {:time => [Handler.new([:repeater_time, :repeater_day_portion?], nil)],
         
        :date => [Handler.new([:repeater_day_name, :repeater_month_name, :scalar_day, :repeater_time, :separator_slash_or_dash?, :time_zone, :scalar_year], :handle_rdn_rmn_sd_t_tz_sy),
@@ -379,16 +379,12 @@ module Chronic
     
     def get_repeaters(tokens) #:nodoc:
       repeaters = []
-		  tokens.each do |token|
-		    if t = token.get_tag(Repeater)
+      tokens.each do |token|
+        if t = token.get_tag(Repeater)
           repeaters << t
         end
       end
       repeaters.sort.reverse
-    end
-    
-    def in_span?(span, t)
-      t && span && t >= span.begin && t <= span.end
     end
     
     # Recursively finds repeaters within other repeaters.
@@ -397,12 +393,12 @@ module Chronic
     def find_within(tags, span, pointer) #:nodoc:
       puts "--#{span}" if Chronic.debug
       return span if tags.empty?
-      
+
       head, *rest = tags
       head.start = pointer == :future ? span.begin : span.end
       h = head.this(:none)
-            
-      if in_span?(span, h.begin) || in_span?(span, h.end)
+
+      if span.cover?(h.begin) || span.cover?(h.end)
         return find_within(rest, h, pointer)
       else
         return nil

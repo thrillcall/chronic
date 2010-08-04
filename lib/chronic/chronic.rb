@@ -113,7 +113,7 @@ module Chronic
     def pre_normalize(text) #:nodoc:
       normalized_text = text.to_s.downcase
       normalized_text = numericize_numbers(normalized_text)
-      normalized_text.gsub!(/['"\.,]/, '')
+      normalized_text.gsub!(/['"\.,]/, ' ')
       normalized_text.gsub!(/ \-(\d{4})\b/, ' tzminus\1')
       normalized_text.gsub!(/([\/\-\,\@])/) { ' ' + $1 + ' ' }
       normalized_text.gsub!(/\btoday\b/, 'this day')
@@ -201,24 +201,24 @@ module Chronic
   # A Span represents a range of time. Since this class extends
   # Range, you can use #begin and #end to get the beginning and
   # ending times of the span (they will be of class Time)
-  class Span < Range   
-    # Returns the width of this span in seconds   
+  class Span < Range
+    # Returns the width of this span in seconds
     def width
       (self.end - self.begin).to_i
     end
-    
-    # Add a number of seconds to this span, returning the 
+
+    # Add a number of seconds to this span, returning the
     # resulting Span
     def +(seconds)
       Span.new(self.begin + seconds, self.end + seconds)
     end
-    
-    # Subtract a number of seconds to this span, returning the 
+
+    # Subtract a number of seconds to this span, returning the
     # resulting Span
     def -(seconds)
       self + -seconds
     end
-    
+
     # Prints this span in a nice fashion
     def to_s
       '(' << self.begin.to_s << '..' << self.end.to_s << ')'
