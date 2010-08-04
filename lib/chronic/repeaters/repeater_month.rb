@@ -1,3 +1,5 @@
+require 'date'
+
 class Chronic::RepeaterMonth < Chronic::Repeater #:nodoc:
   MONTH_SECONDS = 2_592_000 # 30 * 24 * 60 * 60
   YEAR_MONTHS = 12
