@@ -1,6 +1,6 @@
 SPEC = Gem::Specification.new do |s|
   s.name = 'chronic'
-  s.version = '0.3.0'
+  s.version = '0.3.8'
   s.author = 'Tom Preston-Werner'
   s.email = 'tom@rubyisawesome.com'
   s.homepage = 'http://chronic.rubyforge.org'
@@ -13,6 +13,6 @@ SPEC = Gem::Specification.new do |s|
   s.autorequire = "chronic"
   s.test_file = "test/suite.rb"
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README']
-  s.rdoc_options << '--main' << 'README'
+  s.extra_rdoc_files = ['README.txt']
+  s.rdoc_options << '--main' << 'README.txt'
 end

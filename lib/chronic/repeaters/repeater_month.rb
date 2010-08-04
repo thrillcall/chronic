@@ -1,3 +1,5 @@
+require 'date'
+
 class Chronic::RepeaterMonth < Chronic::Repeater #:nodoc:
   MONTH_SECONDS = 2_592_000 # 30 * 24 * 60 * 60
   YEAR_MONTHS = 12
@@ -53,7 +55,14 @@ class Chronic::RepeaterMonth < Chronic::Repeater #:nodoc:
       new_year += 1
       new_month -= YEAR_MONTHS
     end
-    Time.construct(new_year, new_month, time.day, time.hour, time.min, time.sec)
+    
+    new_time = Time.construct(new_year, new_month, time.day, time.hour, time.min, time.sec)
+    if new_time.month > new_month
+      d = Date.new(new_year, new_month, -1)
+      Time.construct(new_year, d.month, d.day, time.hour, time.min, time.sec)
+    else
+      new_time
+    end
   end
   
   def width

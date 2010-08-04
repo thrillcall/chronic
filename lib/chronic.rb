@@ -42,15 +42,21 @@ require 'chronic/time_zone'
 require 'numerizer/numerizer'
 
 module Chronic
-  VERSION = "0.3.0"
+  VERSION = "0.3.8"
   
   class << self
     attr_accessor :debug
-    attr_accessor :time_class
+
+    def time_class
+      Thread.current[:chronic_time_class] ||= Time
+    end
+
+    def time_class=(klass)
+      Thread.current[:chronic_time_class] = klass
+    end
   end
 
   self.debug = false
-  self.time_class = Time
 end
 
 # class Time

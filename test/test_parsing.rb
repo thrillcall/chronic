@@ -218,6 +218,18 @@ class TestParsing < Test::Unit::TestCase
     
     time = parse_now("november")
     assert_equal Time.local(2006, 11, 16), time
+    
+    time = parse_now("1234")
+    assert_equal Time.local(2006, 8, 17, 12, 34), time
+    
+    time = Chronic.parse("1234", :now => Time.local(2006, 8, 16, 3, 0, 0, 0), :ambiguous_time_range => :none)
+    assert_equal Time.local(2006, 8, 16, 12, 34), time
+    
+    time = parse_now("0034")
+    assert_equal Time.local(2006, 8, 17, 0, 34), time
+    
+    time = parse_now("1730")
+    assert_equal Time.local(2006, 8, 16, 17, 30), time
   end
   
   def test_parse_guess_rr
@@ -478,6 +490,12 @@ class TestParsing < Test::Unit::TestCase
     
     time = parse_now("1 month ago")
     assert_equal Time.local(2006, 7, 16, 14), time
+    
+    time = parse_now("1 month ago", :now => Time.local(2010,05,31,14))
+    assert_equal Time.local(2010, 04, 30, 14), time
+
+    time = parse_now("1 month ago", :now => Time.local(2010,03,31,14))
+    assert_equal Time.local(2010, 02, 28, 14), time
     
     time = parse_now("1 fortnight ago")
     assert_equal Time.local(2006, 8, 2, 14), time
