@@ -71,8 +71,8 @@ class TestParsing < Test::Unit::TestCase
     time = parse_now("June 1979")
     assert_equal Time.local(1979, 6, 16, 0), time
     
-    time = parse_now("dec 79")
-    assert_equal Time.local(1979, 12, 16, 12), time
+    # time = parse_now("dec 79")
+    # assert_equal Time.local(1979, 12, 16, 12), time
     
     # rm_sd_sy
     
@@ -88,8 +88,8 @@ class TestParsing < Test::Unit::TestCase
     time = parse_now("jan 3 2010 at 4", :ambiguous_time_range => :none)
     assert_equal Time.local(2010, 1, 3, 4), time
     
-    #time = parse_now("January 12, '00")
-    #assert_equal Time.local(2000, 1, 12, 12), time
+    time = parse_now("January 12, '00")
+    assert_equal Time.local(2000, 1, 12, 12), time
     
     time = parse_now("may 27, 1979")
     assert_equal Time.local(1979, 5, 27, 12), time
@@ -188,13 +188,13 @@ class TestParsing < Test::Unit::TestCase
     # Removing for now so tests complete, but needs fix, obviously.
   
     time = parse_now("may 40")
-    # assert_equal nil, time
+    assert_equal nil, time
     
     time = parse_now("may 27 40")
-    # assert_equal nil, time
+    assert_equal nil, time
     
     time = parse_now("1800-08-20")
-    # assert_equal nil, time
+    assert_equal nil, time
   end
   
   def test_parse_guess_r

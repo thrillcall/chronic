@@ -41,9 +41,6 @@ module Chronic
     def parse(text, specified_options = {})
       @text = text
       
-      # support commas by removing them for now
-      @text.gsub(/,/, ' ') if @text.is_a?(String) 
-      
       # get options and set defaults if necessary
       default_options = {:context => :future,
                          :now => Chronic.time_class.now,
@@ -113,6 +110,14 @@ module Chronic
     def pre_normalize(text) #:nodoc:
       normalized_text = text.to_s.downcase
       normalized_text = numericize_numbers(normalized_text)
+      # completely removing periods breaks decimal minutes, etc.
+      # tests indicate a period should really act as a : in time
+      # and a - in the date.  Not exactly sure what to do with that.
+      # If between numbers, assume time and make it a colon.
+      # Will not work for a date like 10.15.2010
+      normalized_text.gsub!(/([0-9])[\.]([0-9])/, '\1:\2')
+  
+      # probably not time now, so let's make the rest a space
       normalized_text.gsub!(/['"\.,]/, ' ')
       normalized_text.gsub!(/ \-(\d{4})\b/, ' tzminus\1')
       normalized_text.gsub!(/([\/\-\,\@])/) { ' ' + $1 + ' ' }
