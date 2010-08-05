@@ -71,8 +71,8 @@ class TestParsing < Test::Unit::TestCase
     time = parse_now("June 1979")
     assert_equal Time.local(1979, 6, 16, 0), time
     
-    # time = parse_now("dec 79")
-    # assert_equal Time.local(1979, 12, 16, 12), time
+    time = parse_now("dec 79")
+    assert_equal Time.local(1979, 12, 16, 12), time
     
     # rm_sd_sy
     
@@ -182,19 +182,14 @@ class TestParsing < Test::Unit::TestCase
     time = parse_now("jan 5 13:00")
     assert_equal Time.local(2007, 1, 5, 13), time
     
-    # TODO  8/4/2010 ADH
-    # due to limitations of the Time class, these didn't work before.
-    # now they should - but they return years like 0040.
-    # Removing for now so tests complete, but needs fix, obviously.
-  
     time = parse_now("may 40")
-    assert_equal nil, time
+    assert_equal Time.local(1940, 5, 16, 12), time
     
     time = parse_now("may 27 40")
-    assert_equal nil, time
+    assert_equal Time.local(1940, 5, 27, 12), time
     
     time = parse_now("1800-08-20")
-    assert_equal nil, time
+    assert_equal Time.local(1800, 8, 20, 12), time
   end
   
   def test_parse_guess_r
