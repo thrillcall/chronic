@@ -1,3 +1,11 @@
+= 0.3.9   2010-08-04
+
+* fixed 2 digit dates in Ruby 1.9.2
+* fixed timezones in Ruby 1.9.2
+* fixed Tick addition error in Ruby 1.9.2
+* passing tests in Ruby 1.8.7 and 1.9.2
+* support for periods as separators in time
+
 = 0.2.4
 
 * fixed numerizer number combination bug (27 Oct 2006 7:30pm works now) (reported by reynard h)
