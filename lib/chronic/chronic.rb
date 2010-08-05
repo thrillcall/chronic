@@ -228,6 +228,11 @@ module Chronic
     def to_s
       '(' << self.begin.to_s << '..' << self.end.to_s << ')'
     end
+    
+    unless RUBY_VERSION =~ /1\.9\./
+      alias :cover? :include?
+    end
+    
   end
 
   # Tokens are tagged with subclassed instances of this class when
