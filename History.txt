@@ -5,6 +5,7 @@
 * fixed Tick addition error in Ruby 1.9.2
 * passing tests in Ruby 1.8.7 and 1.9.2
 * support for periods as separators in time
+* update gemspec name to aaronh-chronic for publish to rubygems.org
 
 = 0.2.4
 
