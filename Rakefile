@@ -6,7 +6,7 @@ require './lib/chronic.rb'
 
 Hoe.spec('chronic') do |p|
   p.version = Chronic::VERSION
-  p.rubyforge_name = 'aaronh-chronic'
+  p.rubyforge_name = 'chronic'
   p.summary = 'A natural language date parser'
   p.author = 'Tom Preston-Werner'
   p.email = 'tom@rubyisawesome.com'
