@@ -1,3 +1,12 @@
+THRILLCALL
+
+This is a fork of the parent repo which only changes the name to
+chronic.  This was previously used to workaround an incompatibility
+between UltraSphinx and Whenever gems.  This has been changed in the
+main repo and this repo should no longer be needed and can be deleted
+one month from now (6/10/11)
+
+
 Chronic
 http://chronic.rubyforge.org/
 by Tom Preston-Werner
